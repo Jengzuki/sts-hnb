@@ -21,10 +21,6 @@ public class MovieDAOImpl implements MovieDAO{
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	private static MovieDAO instance = new MovieDAOImpl();
-	public static MovieDAO getInstance(){
-		return instance;
-	}
 	private MovieDAOImpl(){
 		con = DatabaseFactory.getDatabase(Vendor.ORACLE, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD).getConnection();
 	}

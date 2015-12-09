@@ -133,9 +133,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/mypage")
-	public @ResponseBody MemberVO mypage(Model model){
+	public String mypage(Model model){
 		logger.info("MemberController-mypage()");
-		return member;
+		return "member/mypage"; 
 	}
 	
 	@RequestMapping("/detail")

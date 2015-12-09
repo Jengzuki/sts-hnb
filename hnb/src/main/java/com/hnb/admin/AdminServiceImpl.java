@@ -16,7 +16,7 @@ public class AdminServiceImpl implements AdminService{
 	public static AdminService getInstance(){
 		return instance;
 	}
-	AdminDAO dao = AdminDAOImpl.getInstance();
+	AdminDAO dao;
 	@Override
 	public List getMemberList() {
 		return memberService.getList();
