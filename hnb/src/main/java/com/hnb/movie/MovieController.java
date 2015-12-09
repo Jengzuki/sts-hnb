@@ -7,9 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -29,66 +31,68 @@ public class MovieController {
 	}
 	
 	@RequestMapping("/movie_info")
-	public String movieInfo(Model model){
+	public Model movieInfo(Model model){
 		logger.info("MovieController-movieInfo() 진입");
 		List<MovieVO> list = service.getList();
 		model.addAttribute("movieList", list);
 		logger.info("영화 리스트 조회 결과 : {}", list);
-		return "/movie/movie_info";
+		return model;
 	}
 	
 	@RequestMapping("/movie_name/{movieName}")
-	public String movieName(@PathVariable("movie_name")String name,Model model){
-		logger.info("MovieController-movieName() 진입");
-		logger.info("영화 아이디 : {}",name);
+	public @ResponseBody MovieVO movieName(
+			@PathVariable("movie_name")String name,Model model){
+		logger.info("MovieController-movieName()");
+		logger.info("movieName :영화 아이디 : {}",name);
 		movie = service.searchByName(name);
-		logger.info("영화 제목 : {}",movie.getFilmName());
-		model.addAttribute("movie", movie);
-		return "/movie/movie_name";
+		logger.info("movieName :영화 제목 : {}",movie.getFilmName());
+		return movie;
 	}
 	
 	@RequestMapping("/movie_Cut")
-	public String movieCut(String filmNumber,Model model, String cut){
-		logger.info("MovieController-파일넘버 : {}", filmNumber);
+	public Model movieCut(
+			String filmNumber,Model model, String cut){
+		logger.info("movieCut : 파일넘버 : {}", filmNumber);
 		movie = service.searchByName(filmNumber);
 		cut = movie.getCut();
 		String[]arr = cut.split("/");
-		logger.info("트레일러 : {}", arr);
+		logger.info("movieCut : 트레일러 : {}", arr);
 		model.addAttribute("arr[]", arr);
-		logger.info("MovieController-movieCut() 진입");
+		logger.info("MovieController-movieCut()");
 		
-		return "/movie/movie_Cut";
+		return model;
 	}
 	
 	@RequestMapping("/movie_Tra")
-	public String movieTra(String filmNumber,Model model){
-		logger.info("MovieController-movieTra() 진입");
+	public Model movieTra(String filmNumber,Model model){
+		logger.info("MovieController-movieTra() ");
 		movie = service.searchByName(filmNumber);
-		logger.info("filmNumber : {}" ,filmNumber);
+		logger.info("movieTra : filmNumber : {}" ,filmNumber);
 		String tra = movie.getTrailer();
-		logger.info("트레일러 : {}", tra);
+		logger.info("movieTra : 트레일러 : {}", tra);
 		String[]arrt = tra.split("/");
-		logger.info("트레일러 : {}", arrt);
+		logger.info("movieTra : 트레일러 : {}", arrt);
 		model.addAttribute("arrt[]", arrt);
 		
-		return "/movie/movie_Tra";
+		return model;
 	}
 	
 	@RequestMapping("/movie_Basic")
-	public String movieBasic(String filmNumber, Model model){
-		logger.info("MovieController-movieBasic() 진입");
+	public @ResponseBody MovieVO movieBasic
+	(String filmNumber, Model model){
+		logger.info("MovieController-movieBasic() ");
 		movie = service.searchByName(filmNumber);
-		logger.info("MovieController-컷 영화제목 {}",movie.getFilmName());
-		model.addAttribute("movie", movie);
-		return "/movie/movie_Basic";
+		logger.info("movieBasic -컷 영화제목 {}",movie.getFilmName());
+		return movie;
 	}
 	
 	@RequestMapping("/movie_Chart")
-	public String movieChart(){
-		logger.info("MovieController-movieChart() 진입");
+	public Model movieChart(Model model){
+		logger.info("MovieController-movieChart()");
 		List<MovieVO> list = service.getList();
 		list = service.getList();
-		return "/movie/movie_Chart";
+		model.addAttribute("movieList2", list);
+		return model;
 	}
 	
 }
