@@ -21,7 +21,7 @@ public class MainController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("메인 컨트롤러 Home 메소드 진입 {}.", locale);
+		logger.info("메인 컨트롤러 Home 메소드 진입 {}. ", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
