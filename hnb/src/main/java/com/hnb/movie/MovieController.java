@@ -27,7 +27,7 @@ public class MovieController {
 	@RequestMapping("/Movie")
 	public String movie(){
 		logger.info("MovieController-movie() 진입");
-		return "/movie/Movie.tiles";
+		return "movie/Movie.jsp";
 	}
 	
 	@RequestMapping("/movie_info")

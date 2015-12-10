@@ -17,20 +17,15 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" style="height:610px;">
 					<div class="item active">
-						<img class="img-responsive img-full" style="height:100%;" src="${context}/images/movie-slide1.jpg" alt="">
-					</div>
+						<img class="img-responsive img-full" style="height:100%;" src="${img}/movie-slide1.jpg" alt="">	</div>
 					<div class="item">
-						<img class="img-responsive img-full" style="height:100%;" src="${context}/images/movie-slide1-1.jpg" alt="">
-					</div>
+						<img class="img-responsive img-full" style="height:100%;" src="${img}/movie-slide1-1.jpg" alt=""> </div>
 					<div class="item">
-						<img class="img-responsive img-full" style="height:100%;" src="${context}/images/movie-slide3.jpg" alt="">
-					</div>
+						<img class="img-responsive img-full" style="height:100%;" src="${img}/movie-slide3.jpg" alt="">	</div>
 					<div class="item">
-						<img class="img-responsive img-full" style="height:100%;" src="${context}/images/movie-slide4.jpg" alt="">
-					</div>
+						<img class="img-responsive img-full" style="height:100%;" src="${img}/movie-slide4.jpg" alt="">	</div>
 					<div class="item">
-						<img class="img-responsive img-full" style="height:100%;" src="${context}/images/movie-slide5.jpg" alt="">
-					</div>
+						<img class="img-responsive img-full" style="height:100%;" src="${img}/movie-slide5.jpg" alt="">	</div>
 				</div>
 
 				<!-- Controls -->
@@ -53,6 +48,3 @@
 	</div>
 </div>
 </div>
-<script src="../js/jquery.js"></script>
-<script src="../js/bootstrap.js"></script>
-<script src="../js/bootstrap.min.js"></script>

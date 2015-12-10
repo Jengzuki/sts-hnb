@@ -17,11 +17,14 @@
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	
+	
+	<!-- SOAP 방식 리턴 값 경정인데, 타일즈를 사용하면 제거해야함. 
+	 <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-	</beans:bean> -->
-	
+	</beans:bean> 
+	-->
 	
 	<!-- 타일즈 -->
 	<beans:bean id="TilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
