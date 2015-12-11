@@ -57,7 +57,7 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
-                
+        
 				
 		<!-- AspectJ -->
 		<dependency>
@@ -67,6 +67,12 @@
 		</dependency>	
 		
 		<!-- Logging -->
+		<dependency>
+		<groupId>org.lazyluke</groupId>
+		<artifactId>log4jdbc-remix</artifactId>
+		<version>0.2.7</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
