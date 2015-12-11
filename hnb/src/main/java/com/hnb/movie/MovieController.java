@@ -41,7 +41,7 @@ public class MovieController {
 	
 	@RequestMapping("/movie_name/{movieName}")
 	public @ResponseBody MovieVO movieName(
-			@PathVariable("movie_name")String name,Model model){
+			@PathVariable("movieName")String name,Model model){
 		logger.info("MovieController-movieName()");
 		logger.info("movieName :영화 아이디 : {}",name);
 		movie = service.searchByName(name);
@@ -87,12 +87,13 @@ public class MovieController {
 	}
 	
 	@RequestMapping("/movie_Chart")
-	public Model movieChart(Model model){
+	public @ResponseBody List<MovieVO> movieChart(){
 		logger.info("MovieController-movieChart()");
 		List<MovieVO> list = service.getList();
-		list = service.getList();
-		model.addAttribute("movieList2", list);
-		return model;
+		System.out.println("서비스 리턴값 : "+list);
+		logger.info("서비스 리턴값 : {}", list);
+		/*model.addAttribute("movieList2", list);*/
+		return list;
 	}
 	
 }
