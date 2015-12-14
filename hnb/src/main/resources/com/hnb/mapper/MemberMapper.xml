@@ -16,9 +16,8 @@
 	 EMAIL AS email,
 	 REGDATE AS regdate
   FROM (SELECT ROWNUM AS seq, m.* FROM MEMBER m)
-  WHERE seq BETEWEEN #{start} AND #{end}
+  WHERE seq BETWEEN #{start} AND #{end}
  </select>
- <!-- 서브쿼리-->
  
  <select id="selectSomeBy" resultType="com.hnb.member.MemberVO"
  parameterType="com.hnb.global.Command">
