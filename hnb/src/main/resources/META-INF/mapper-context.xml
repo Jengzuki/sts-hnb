@@ -13,5 +13,6 @@
     <mapper resource="com/hnb/mapper/MovieMapper.xml"/>
     <mapper resource="com/hnb/mapper/ScheduleMapper.xml"/>
     <mapper resource="com/hnb/mapper/TicketMapper.xml"/>
+    <mapper resource="com/hnb/mapper/EventMapper.xml"/>
   </mappers>
 </configuration>

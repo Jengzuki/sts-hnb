@@ -2,6 +2,8 @@ package com.hnb.member;
 
 import java.util.List;
 
+import com.hnb.global.Command;
+
 
 public interface MemberService {
 
@@ -9,7 +11,7 @@ public interface MemberService {
 	public int join(MemberVO member);
 	
 	// R : 조회
-	public List<MemberVO> getList(); //전체회원목록
+	public List<MemberVO> getList(Command command); //전체회원목록
 	public List<MemberVO> searchByKeyword(String column,String keyword); //임의의 값으로 검색
 	public MemberVO selectById(String id); //아이디로 조회
 	public int count(); //전체회원수 조회

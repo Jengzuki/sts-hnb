@@ -1,62 +1,94 @@
 package com.hnb.member;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.hnb.global.Command;
+import com.hnb.mapper.MemberMapper;
+import com.hnb.movie.MovieController;
+
 
 @Service
 public class MemberServiceImpl  implements MemberService{
-	private static MemberService instance = new MemberServiceImpl();
-	public static MemberService getInstance() {
-		return instance;
-	} 
-	MemberDAO dao = MemberDAOImpl.getInstance();
+
+	private static final Logger logger = LoggerFactory.getLogger(MovieController.class);
+	@Autowired private SqlSession sqlsession;
+	
 	// 회원가입
 		@Override
 		public int join(MemberVO member) {
-			return dao.insert(member);
+			logger.info("MemberServiceImpl : join");
+			MemberMapper mapper = sqlsession.getMapper(MemberMapper.class);
+			return mapper.insert(member);
 		}
 		
 		// 전체 회원목록 조회
 		@Override
-		public List<MemberVO> getList() {
-			return dao.selectAll();
+		public List<MemberVO> getList(Command command) {
+			logger.info("MemberServiceImpl : getList");
+			MemberMapper mapper = sqlsession.getMapper(MemberMapper.class);
+			return mapper.selectAll(command);
 		}
 		
 		// 임의의 검색어로 조회
 		@Override
 		public List<MemberVO> searchByKeyword(String column, String keyword) {
-			return dao.selectSomeBy(column, keyword);
+			logger.info("MemberServiceImpl : searchByKeyword");
+			MemberMapper mapper = sqlsession.getMapper(MemberMapper.class);
+			return mapper.selectSomeBy(column, keyword);
 		}
 		
 		// ID로 회원검색
 		@Override
 		public MemberVO selectById(String id) {
-			return dao.selectOneBy(id);
+			logger.info("MemberServiceImpl : selectById");
+			MemberMapper mapper = sqlsession.getMapper(MemberMapper.class);
+			return mapper.selectOneBy(id);
 		}
 		
 		// 총 회원 수 검색
 		@Override
 		public int count() {
-			return dao.count();
+			logger.info("MemberServiceImpl : count ");
+			MemberMapper mapper = sqlsession.getMapper(MemberMapper.class);
+			return mapper.count();
 		}
 		
 		// 로그인
 		@Override
 		public MemberVO login(String id, String pass) {
-			return dao.login(id, pass);
+			logger.info("MemberServiceImpl : login ");
+			MemberMapper mapper = sqlsession.getMapper(MemberMapper.class);
+			MemberVO loginMember = null;
+			loginMember = mapper.selectOneBy(id);
+			if (loginMember.getId() == null) {
+				return null;
+			} 
+			if (loginMember.getPassword().equals(pass)) {
+				return loginMember;
+			}else{
+				return null;
+			}
 		}
 		
 		// 회원정보 변경
 		@Override
 		public int change(MemberVO member) {
-			return dao.update(member);
+			logger.info("MemberServiceImpl : change");
+			MemberMapper mapper = sqlsession.getMapper(MemberMapper.class);
+			return mapper.update(member);
 		}
 		
 		// 회원탈퇴
 		@Override
 		public int remove(String id) {
-			return dao.delete(id);
+			logger.info("MemberServiceImpl : remove");
+			MemberMapper mapper = sqlsession.getMapper(MemberMapper.class);
+			return mapper.delete(id);
 		}
 }

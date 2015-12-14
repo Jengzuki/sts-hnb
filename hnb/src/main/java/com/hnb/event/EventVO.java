@@ -1,8 +1,8 @@
-package com.hnb.article;
+package com.hnb.event;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class ArticleVO {
+public class EventVO {
 
 }
