@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  <mapper namespace="com.hnb.mapper.MemberMapper">
  <select id="selectAll" resultType="com.hnb.member.MemberVO" parameterType="com.hnb.global.Command">
@@ -15,23 +13,26 @@
 	 ADDR AS addr,
 	 EMAIL AS email,
 	 REGDATE AS regdate
-  FROM (SELECT ROWNUM AS seq, m.* FROM MEMBER m)
+  FROM (SELECT ROWNUM AS seq, member.* FROM MEMBER member)
   WHERE seq BETWEEN #{start} AND #{end}
  </select>
  
- <select id="selectSomeBy" resultType="com.hnb.member.MemberVO"
- parameterType="com.hnb.global.Command">
+ <select id="selectSomeBy" resultType="com.hnb.member.MemberVO" parameterType="com.hnb.global.Command">
  SELECT
- ID AS id,
- PASSWORD AS password,
- NAME AS name,
- BIRTH AS birth,
- GENDER AS gender,
- PHONE AS phone,
- ADDR AS addr,
- EMAIL AS email,
- REGDATE AS regdate
- FROM MEMBER WHERE #{column} = #{keyword}
+	 ID AS id,
+	 PASSWORD AS password,
+	 NAME AS name,
+	 BIRTH AS birth,
+	 GENDER AS gender,
+	 PHONE AS phone,
+	 ADDR AS addr,
+	 EMAIL AS email,
+	 REGDATE AS regdate
+ FROM (SELECT ROWNUM AS seq, m.* FROM (
+ 	SELECT * FROM MEMBER
+ 	WHERE ${column} LIKE '%' || #{keyword} || '%' 
+ ) m)
+ WHERE seq BETWEEN #{start} AND #{end}
  </select>
  <select id="selectOneBy" resultType="com.hnb.member.MemberVO"
  parameterType="string">
@@ -50,8 +51,11 @@
  <select id="count" resultType="int">
  SELECT COUNT(*) AS count FROM MEMBER
  </select>
-
- 
+<select id="countByKeyword" resultType="int" parameterType="com.hnb.member.MemberVO">
+  SELECT COUNT(*) AS count
+  FROM MEMBER
+  WHERE ${column} LIKE '%' || #{keyword} || '%'
+ </select>
  <insert id="insert" parameterType="com.hnb.member.MemberVO">
  INSERT INTO MEMBER 
 	 (
