@@ -123,7 +123,7 @@
 		
 		$("#event_btn").click(function() {
 			history.pushState("Event_home","","");
-			location.href = "${context}/event/boardList";
+			location.href = "${context}/event/boardList/1";
 		});
 		
 		/* 로그인 버튼 */
