@@ -16,7 +16,7 @@ import com.hnb.movie.MovieController;
 @Service
 public class MemberServiceImpl  implements MemberService{
 
-	private static final Logger logger = LoggerFactory.getLogger(MovieController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 	@Autowired private SqlSession sqlsession;
 	
 	// 회원가입

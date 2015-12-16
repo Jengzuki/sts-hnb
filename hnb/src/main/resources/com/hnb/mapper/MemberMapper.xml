@@ -27,7 +27,8 @@
 	 PHONE AS phone,
 	 ADDR AS addr,
 	 EMAIL AS email,
-	 REGDATE AS regdate
+	 REGDATE AS regdate,
+	 PROFILE AS profile
  FROM (SELECT ROWNUM AS seq, m.* FROM (
  	SELECT * FROM MEMBER
  	WHERE ${column} LIKE '%' || #{keyword} || '%' 
@@ -45,7 +46,8 @@
  PHONE AS phone,
  ADDR AS addr,
  EMAIL AS email,
- REGDATE AS regdate
+ REGDATE AS regdate,
+ PROFILE AS profile
  FROM MEMBER WHERE ID = #{id}
  </select>
  <select id="count" resultType="int">
@@ -67,7 +69,8 @@
 	 PHONE,
 	 ADDR,
 	 EMAIL,
-	 REGDATE) 
+	 REGDATE,
+	 PROFILE) 
 	 VALUES (
 	 #{id},
 	 #{password},
@@ -76,13 +79,17 @@
 	 #{phone},
 	 #{addr},
 	 #{email},
-	 sysdate
+	 sysdate,
+	 #{profile}
  )
  </insert>
  
  <update id="update" parameterType="com.hnb.member.MemberVO">
  UPDATE MEMBER SET PASSWORD= #{password}, 
- ADDR= #{addr}, PHONE = #{phone}, EMAIL = #{email}
+ ADDR= #{addr}, 
+ PHONE = #{phone}, 
+ EMAIL = #{email},
+ PROFILE = #{profile}
  WHERE ID = #{id}
  </update>
  <delete id="delete" parameterType="string">

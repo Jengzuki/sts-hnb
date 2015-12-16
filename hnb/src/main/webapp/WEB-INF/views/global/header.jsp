@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-   
 	<div>
 	<div id="frm_toggle">
 	<c:if test="${empty sessionScope.user}">
@@ -52,114 +51,48 @@
                         <button id="movie_btn">영화</button> <!-- 네비바 해당 링크 존재 -->
                     </li>
                     <li>
-                        <button id="ticket_btn" href="#" >예매</button>
+                        <button id="ticket_btn">예매</button>
                     </li>
                     <li>
-                        <button id="theater_btn" href="#" >극장</button>
+                        <button id="theater_btn">극장</button>
                     </li>
                     <li>
-                        <button id="event_btn" href="#" >이벤트&컬쳐</button>
+                        <button id="event_btn">이벤트&컬쳐</button>
                     </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
     </nav>
-<script src="${js}/global.js"></script>  
-<script src="${js}/member.js"></script>  
-<script src="${js}/admin.js"></script>  
-<script src="${js}/bom.js"></script>  
-<script src="${js}/movie.js"></script>  
-<script src="${js}/ticket.js"></script>  
-<script src="${js}/jquery.js"></script>
-<script src="${js}/bootstrap.js"></script>
-<script src="${js}/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 	$(function() {
-		$(window).on("popstate", function(event) {
-		    var e = event.originalEvent.state;  // 이부분으로 뒤로가기 할때마다 아까 저장한 히스토리 스택에 쌓인 URL을 불러 온다
-		    console.log("푸쉬상태 : " + e);
-		    switch (e) {
-			case "Admin_home":
-				Admin.home("${context}");
-				break;
-			case "Admin_member":
-				Admin.member("${context}");
-				break;
-			case "Admin_moive":
-				Member.movie("${context}");
-				break;
-			case "Movie_home":
-				Movie.home("${context}");
-				break;
-			case "Member_join":
-				Member.join("${context}");
-				break;
-			default:
-				$("#box").load("${context}/global/Main.do?page=default");
-				break;
-			}
-		});
+		var $home = $('#home');
+		var $event = $('#event_btn');
+		var $movie = $('#movie_btn');
+		var $ticket = $('#ticket_btn');
+		var $mainView = $('.mainView');
+		var $login = $('#login_btn');
+		var $logout = $('#logout_btn');
+		var $join = $('#join_btn');
+		var $mypage = $('#mypage_btn');
+		var $adminHome = $('#admin_home');
+		var $adminMember = $('#admin_member');
+		var $adminMovie = $('#admin_movie');
 		
-		/* 메인 버튼 */
-		$("#home").click(function() {
-			$("#box").load("${context}/global/Main.do?page=default");
-		});
+		global.load($home,$mainView,context+"/");
+		global.load($ticket, $mainView,context+"/ticket/Ticket.do");
+		global.load($mypage, $mainView,context+"/member/mypage");
 		
-		/* 네비게이션 버튼 */
-		$("#movie_btn").click(function() {
-			history.pushState("Movie_home","","");
-			Movie.home("${context}");
-		});
+		global.move($event,context+"/event/boardList");
 		
-		$("#ticket_btn").click(function() {
-			history.pushState("Ticket_home","","");
-			$("#box").load("${context}/ticket/Ticket.do");
-		});
+		$movie.click(function() {Movie.home(context);});
+		$join.click(function() {Member.join(context);});
+		$login.click(function() {Member.login(context);});
+		$logout.click(function() {Member.logout(context);});
+		$adminHome.click(function() {Admin.home(context);});
+		$adminMember.click(function() {Admin.member(context);});
+		$adminMovie.click(function() {Admin.movie(context);});
 		
-		$("#theater_btn").click(function() {
-			history.pushState("Theater_home","","");
-			$("#box").load();
-		});
-		
-		$("#event_btn").click(function() {
-			history.pushState("Event_home","","");
-			location.href = "${context}/event/boardList/1";
-		});
-		
-		/* 로그인 버튼 */
-		$("#header").on("click","#join_btn",function() {
-			history.pushState("Member_join","","");
-			Member.join("${context}");
-		});
-	
-		$("#header").on("click","#login_btn",function() {
-			Member.login("${context}");
-		});
-		
-		$("#header").on("click","#logout_btn",function() {
-			Member.logout("${context}");
-		});
-		
-		/*마이페이지 버튼 */
-		$("#header").on("click", "#mypage_btn",function() {
-			$("#box").load("${context}/member/Member.do?page=mypage");
-		});
-		
-		/* 관리자 버튼 */
-		$("#outbox").on("click","#admin_home",function() {
-			history.pushState("Admin_home","","");
-			Admin.home("${context}");
-		});
-		$("#outbox").on("click","#admin_member",function() {
-			history.pushState("Admin_member","","");
-			Admin.member("${context}");
-		});
-		$("#outbox").on("click","#admin_movie",function() {
-			history.pushState("Admin_movie","","");
-			Admin.movie("${context}");
-		});
-		
-	
 	});
 	
 	
