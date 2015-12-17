@@ -57,7 +57,10 @@
                         <button id="theater_btn">극장</button>
                     </li>
                     <li>
-                        <button id="event_btn">이벤트&컬쳐</button>
+                        <button id="board_btn">게시판</button>
+                    </li>
+                    <li>
+                        <button id="admin_btn">관리자</button>
                     </li>
                 </ul>
             </div>
@@ -67,8 +70,9 @@
 <script type="text/javascript">
 	$(function() {
 		var $home = $('#home');
-		var $event = $('#event_btn');
+		var $board = $('#board_btn');
 		var $movie = $('#movie_btn');
+		var $admin = $('#admin_btn');
 		var $ticket = $('#ticket_btn');
 		var $mainView = $('.mainView');
 		var $login = $('#login_btn');
@@ -83,7 +87,8 @@
 		global.load($ticket, $mainView,context+"/ticket/Ticket.do");
 		global.load($mypage, $mainView,context+"/member/mypage");
 		
-		global.move($event,context+"/event/boardList");
+		global.move($board,context+"/event/boardList");
+		global.move($admin,context+"/admin/main");
 		
 		$movie.click(function() {Movie.home(context);});
 		$join.click(function() {Member.join(context);});

@@ -9,12 +9,14 @@
 	load : function(url) {
 		$.getJSON(url,function(data) {
 		var table = '<div id="boardList">'
-		+'<h1>회원목록</h1>'
+		+'<h1 ALIGN=CENTER style="color: #ffffff; margin-bottom: 50px">자유게시판</h1>'
 		+'<TABLE id="tab_borderList">'
 		+'<TR ALIGN=CENTER>'
-		+'<TD WIDTH=10%><B>번호</B></TD><TD WIDTH=20%><B>아이디</B></TD>'
-		+'<TD WIDTH=20%><B>회원명</B></TD><TD WIDTH=30%><B>이메일</B></TD>'
-		+'<TD WIDTH=18%><B>가입일</B></TD></TR>'
+		+'<TD WIDTH=10%><B>번호</B></TD>'
+		+'<TD WIDTH=40%><B>제 목</B></TD>'
+		+'<TD WIDTH=10%><B>작성자</B></TD>'
+		+'<TD WIDTH=20%><B>작성일</B></TD>'
+		+'<TD WIDTH=8%><B>참조</B></TD></TR>'
 		 +'<c:forEach var="member" items="${memberList}" varStatus="status">'
 		+'<TR><TD WIDTH=10% ALIGN=CENTER>${status.index+1}</TD>'
 		+'<TD WIDTH=20% ALIGN=CENTER>'+data.id+'</TD>'
@@ -25,20 +27,9 @@
 		+'</TABLE></div>'
 		$('.mainView').empty();
 		$('.mainView').html(table);
-		board.style();
-		});
-	},
-	
-	
-	style : function() {
-		$('.mainView').css('height','400px');
-		$('#tab_borderList').css('width','80%').css('margin','auto');
-		$('#tab_borderList').add('td').css('border','1px solid white');
-		$('#tab_borderList').add('a').css('color','#ffffff').css('text-decoration','none');
-		$('h1').css("color","#ffffff").css('margin-bottom','50px').css('margin-left','45%');
 		
+		});
 	}
-		 
  }
 
 </script>

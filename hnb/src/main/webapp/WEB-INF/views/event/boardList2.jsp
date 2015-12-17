@@ -52,10 +52,7 @@
 
 
 
-
-
-
-<TABLE id="pagenation">
+<TABLE id="pagination">
 	<TR>
 		<TD ALIGN=LEFT WIDTH=100>
 			<IMG SRC="${img}/btn_new.gif" onClick="javascript:location.replace('BoardWrite.jsp')" STYLE="CURSOR:HAND">
