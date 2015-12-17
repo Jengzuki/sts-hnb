@@ -4,5 +4,117 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  <mapper namespace="com.hnb.mapper.ArticleMapper">
+	
+	<select id="getList" resultType="com.hnb.article.ArticleVO" 
+	parameterType="com.hnb.global.Command">
+	
+	SELECT
+	 RCD_NO AS rcdNo,
+	 GRP_NO AS grpNo,
+	 USR_NAME AS usrName,
+	 USR_MAIL AS usrMail,
+	 USR_SUBJECT AS usrSubject,
+	 USR_CONTENT AS usrContent,
+	 USR_PASS AS usrPass,
+	 USR_FILE_NAME AS usrFileName,
+	 USR_FILE_SIZE AS usrFileSize,
+	 USR_DATE AS usrDate,
+	 USR_REFER AS usrRefer,
+	 RCD_LEVEL AS rcdLevel,
+	 RCD_ORDER AS rcdOrder
+	FROM BOARD
+	</select>
 
+<select id="searchByKeyword" resultType="com.hnb.article.ArticleVO" 
+parameterType="com.hnb.global.Command">
+SELECT
+	 RCD_NO AS rcdNo,
+	 GRP_NO AS grpNo,
+	 USR_NAME AS usrName,
+	 USR_MAIL AS usrMail,
+	 USR_SUBJECT AS usrSubject,
+	 USR_CONTENT AS usrContent,
+	 USR_PASS AS usrPass,
+	 USR_FILE_NAME AS usrFileName,
+	 USR_FILE_SIZE AS usrFileSize,
+	 USR_DATE AS usrDate,
+	 USR_REFER AS usrRefer,
+	 RCD_LEVEL AS rcdLevel,
+	 RCD_ORDER AS rcdOrder
+	FROM BOARD WHERE RCD_NO = #{rcdNo}
+</select>
+ 
+<select id="searchById" resultType="com.hnb.article.ArticleVO" parameterType="int">
+SELECT
+	 RCD_NO AS rcdNo,
+	 GRP_NO AS grpNo,
+	 USR_NAME AS usrName,
+	 USR_MAIL AS usrMail,
+	 USR_SUBJECT AS usrSubject,
+	 USR_CONTENT AS usrContent,
+	 USR_PASS AS usrPass,
+	 USR_FILE_NAME AS usrFileName,
+	 USR_FILE_SIZE AS usrFileSize,
+	 USR_DATE AS usrDate,
+	 USR_REFER AS usrRefer,
+	 RCD_LEVEL AS rcdLevel,
+	 RCD_ORDER AS rcdOrder
+	FROM BOARD WHERE RCD_NO = #{rcdNo}
+</select>
+
+<select id="count" parameterType="int">
+ SELECT COUNT(rcdNo) FROM BOARD
+</select>
+
+<select id="countByKeyword" resultType="int" 
+parameterType="com.hnb.article.ArticleVO">
+ SELECT COUNT(*) AS count 
+ FROM BOARD
+ WHERE ${column} LIKE '%' || #{keyword} || '%'
+</select>
+
+<insert id="wright" parameterType="com.hnb.article.ArticleVO" >
+INSERT INTO BOARD
+	(RCD_NO,
+	 GRP_NO,
+	 USR_NAME,
+	 USR_MAIL,
+	 USR_SUBJECT,
+	 USR_CONTENT,
+	 USR_PASS,
+	 USR_FILE_NAME,
+	 USR_FILE_SIZE,
+	 USR_DATE,
+	 USR_REFER,
+	 RCD_LEVEL,
+	 RCD_ORDER)
+	 VALUSE (
+	#{rcdNo},
+	#{grpNo},
+	#{usrName},
+	#{usrMail},
+	#{usrSubject},
+	#{usrContent},
+	#{usrPass},
+	#{usrFileName},
+	#{usrFileSize},
+	#{usrDate},
+	#{usrRefer},
+	#{rcdLevel},
+	#{rcdOrder}
+	 )
+</insert>
+
+<update id="change" parameterType="com.hnb.article.ArticleVO">
+UPDATE BOARD SET USR_REFER = USR_REFER+1,
+	USR_NAME = #{usrName},
+	USR_MAIL = #{usrMil},
+	USR_SUBJECT = #{usrSubject},
+	USR_CONTENT = #{usrContent}
+WHERE RCD_NO=#{rcdNo}
+</update>
+
+<delete id="remove" parameterType="string">
+DELETE FROM BOARD WHERE RED_NO = #{rcdNo}
+</delete>
  </mapper>

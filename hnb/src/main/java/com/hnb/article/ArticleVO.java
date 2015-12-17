@@ -4,27 +4,27 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ArticleVO {
-	 int rcdNo; //글번호
-	 int pripNo; //글 그룹
-	 String usrName; //작성자
-	 String usrMail; //작성자메일
-	 String usrSubject; //제목
-	 String useContent; // 글내용
-	 String usrPass; // 비번
-	 String usrFileName; //업로드 파일이름
-	 int usrFileSize; //파일사이즈
-	 String usrDate; //작성일
-	 int usrRefer; //참조횟수
-	 int rsdLevel; //레벨
-	 int rcdOrder; //레코드 출력순서
+	 private int rcdNo; //글번호
+	 private int grpNo; //글 그룹
+	 private String usrName; //작성자
+	 private String usrMail; //작성자메일
+	 private String usrSubject; //제목
+	 private String usrContent; // 글내용
+	 private String usrPass; // 비번
+	 private String usrFileName; //업로드 파일이름
+	 private int usrFileSize; //파일사이즈
+	 private String usrDate; //작성일
+	 private int usrRefer; //참조횟수
+	 private int rcdLevel; //레벨
+	 private int rcdOrder; //레코드 출력순서
 	 
 	 
 	 
 	public int getRcdNo() {
 		return rcdNo;
 	}
-	public int getPripNo() {
-		return pripNo;
+	public int getGrpNo() {
+		return grpNo;
 	}
 	public String getUsrName() {
 		return usrName;
@@ -39,7 +39,7 @@ public class ArticleVO {
 		return usrPass;
 	}
 	public String getUsrContent() {
-		return useContent;
+		return usrContent;
 	}
 	public String getUsrFileName() {
 		return usrFileName;
@@ -53,8 +53,8 @@ public class ArticleVO {
 	public int getUsrRefer() {
 		return usrRefer;
 	}
-	public int getRsdLevel() {
-		return rsdLevel;
+	public int getRcdLevel() {
+		return rcdLevel;
 	}
 	public int getRcdOrder() {
 		return rcdOrder;
@@ -62,8 +62,8 @@ public class ArticleVO {
 	public void setRcdNo(int rcdNo) {
 		this.rcdNo = rcdNo;
 	}
-	public void setPripNo(int pripNo) {
-		this.pripNo = pripNo;
+	public void setGrpNo(int grpNo) {
+		this.grpNo = grpNo;
 	}
 	public void setUsrName(String usrName) {
 		this.usrName = usrName;
@@ -78,7 +78,7 @@ public class ArticleVO {
 		this.usrPass = usrPass;
 	}
 	public void setUsrContent(String usrContent) {
-		this.useContent = usrContent;
+		this.usrContent = usrContent;
 	}
 	public void setUsrFileName(String usrFileName) {
 		this.usrFileName = usrFileName;
@@ -92,8 +92,8 @@ public class ArticleVO {
 	public void setUsrRefer(int usrRefer) {
 		this.usrRefer = usrRefer;
 	}
-	public void setRsdLevel(int rsdLevel) {
-		this.rsdLevel = rsdLevel;
+	public void setRcdLevel(int rcdLevel) {
+		this.rcdLevel = rcdLevel;
 	}
 	public void setRcdOrder(int rcdOrder) {
 		this.rcdOrder = rcdOrder;
