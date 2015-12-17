@@ -3,16 +3,21 @@ var Member = {
 			$("#box").load(project + "/member/Member.do");
 		},
 		login : function(project) {
-			alert("로그인 버튼 클릭");
+			var member = {
+					"id" : $('#id').val(),
+					"password" : $('#password').val()
+			};
+			
 			$.ajax(project + "/member/login",{
-				data : {
-					id : $(".form-2 input:text[name=login]").val(),
-					pw : $(".form-2 input:password[name=password]").val()
-				},
+				data : JSON.stringify(member),
 				dataType : "json",
+				type : 'post',
+				contentType : "application/json;",
+				mimeType : "application/json;",
+				async: false,
 				success : function(data) {
 					if(data != null){
-						alert("로그인 성공");
+						alert("로그인성공");
 						location.href = project + "/member/mypage";
 						// 관리자 아이디로 확인되면
 						if(data.admin === "yes") {

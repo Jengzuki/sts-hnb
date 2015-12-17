@@ -9,10 +9,13 @@
 	<configs>
 		<config>src/main/webapp/WEB-INF/tiles.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/root-context.xml</config>
+		<config>src/main/resources/META-INF/handler-context.xml</config>
+		<config>src/main/resources/META-INF/file-context.xml</config>
+		<config>src/main/resources/META-INF/tiles-context.xml</config>
+		<config>src/main/resources/META-INF/view-context.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/META-INF/mapper-context.xml</config>
-		<config>src/main/resources/META-INF/fileupload-context.xml</config>
 		<config>src/main/resources/META-INF/mybatis-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
 	</autoconfigs>
