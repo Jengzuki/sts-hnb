@@ -11,6 +11,7 @@
 	SELECT
 	 RCD_NO AS rcdNo,
 	 GRP_NO AS grpNo,
+	 THEME_NO AS themeNo,
 	 USR_NAME AS usrName,
 	 USR_MAIL AS usrMail,
 	 USR_SUBJECT AS usrSubject,
@@ -23,6 +24,8 @@
 	 RCD_LEVEL AS rcdLevel,
 	 RCD_ORDER AS rcdOrder
 	FROM BOARD
+	WHERE THEME_NO =#{themeNo}
+	
 	</select>
 
 <select id="searchByKeyword" resultType="com.hnb.article.ArticleVO" 
