@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -34,12 +35,21 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/list")
-	public String goList(
-		){
+	public String goList(){
 		logger.info("ArticleController-goList()");
-		return "event/boardList.tiles";
+		return "article/list.tiles";
 	}
 	
-	
+	@RequestMapping("/write")
+	public String write(){
+		logger.info("ArticleController-write()");
+		return "article/write.jsp";
+	}
+	@RequestMapping("/save")
+	public String save(
+			@RequestBody ArticleVO article){
+		logger.info("ArticleController-save()");
+		return "article/save.jsp";
+	}
 	
 }
