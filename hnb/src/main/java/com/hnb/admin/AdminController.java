@@ -47,14 +47,26 @@ public class AdminController {
 	
 	@RequestMapping("/member_list/{pageNo}")
 	public @ResponseBody Map<String,Object> memberList(
-			@PathVariable("pageNo")String pageNo,			
+			@PathVariable("pageNo")String pageNo,
 			Model model){
 		logger.info("AdminController-memberList()");
 		logger.info("넘어온 페이지 번호 : {}",pageNo);
+		int pageSize = 5, groupSize = 3, totPage = 0 ,lastPage = 0,
+		pageNum = Integer.parseInt(pageNo),count = memberService.count();
+		
+		totPage = (((count % pageSize) == 0) ?  count/pageSize : (count/pageSize)+1);
+		int startPage = pageNum-((pageNum-1)%groupSize);
+		lastPage = (((startPage+pageSize-1) <= totPage) ? (startPage+groupSize)-1 : totPage);
+
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("list", memberService.getList(CommandFactory.list(pageNo)));
-		map.put("count", memberService.count());
+		map.put("count", count);
 		map.put("pageNo", pageNo);
+		map.put("startPage", startPage);
+		map.put("lastPage", lastPage);
+		map.put("groupSize", groupSize);
+		map.put("totPage", totPage);
+		
 		return map;
 	}
 	

@@ -12,7 +12,7 @@
 </c:choose>
 <c:set var="startPage" value="${pageNo- (pageNo-1)%GROUPSIZE }"></c:set>
 <c:choose>
-	<c:when test="${statrtPage+PAGESIZE-1 le totPage}">
+	<c:when test="${startPage+PAGESIZE-1 le totPage}">
 	<c:set var="lastPage" value="${startPage+GROUPSIZE-1}"></c:set>
 	</c:when>
 	<c:otherwise>
