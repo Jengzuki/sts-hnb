@@ -1,16 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script>
 $(function() {
-	if (condition) {
-		Admin.memberList(context+'/admin/member_list');
-	} else {
-
-	}
-	
+	Admin2.memberList('1');
 });	
- var Admin = {
-		 memberList: function(url) {
-		$.getJSON(context+'/admin/member_list/1',function(data) {
+ var Admin2 = {
+		 memberList: function(pageNo) {
+		$.getJSON(context+'/admin/member_list/'+pageNo,function(data) {
 			var table = "<div id='boardList'><h1 align=center style='color:white;margin-bottom:30px'>회원목록</h1>"
 			+"<TABLE id='tab_borderList'>"
 			+"<TR ALIGN=CENTER><TD WIDTH=10%><B>번호</B></TD>"
@@ -44,17 +39,17 @@ $(function() {
 				+'</a> ';
 			}
 			if ((startPage - groupSize) > 0) {
-			pagination += '<a href="'+context+'/admin/member_list/'+(startPage-groupSize)+'">'
+			pagination += '<a href="'+context+'/admin/memberList/'+(startPage-groupSize)+'">'
 				+'<IMG SRC="'+img+'/btn_bf_page.gif">&nbsp;'
 				+'</a>';
 			}
 			
 			for (var i = startPage; i <= lastPage; i++) {
 				if (i == pageNo) {
-					pagination += '<font style="color:red; font-size: 20px">'+ i
+					pagination +='<font style="color:red; font-size: 20px">'+ i
 					+'</font>';
 				} else {
-					pagination += '<a href="'+context+'/admin/member_list/'+i+'">'
+					pagination +='<a href="#" onclick="return Admin2.memberList('+i+')">'
 					+'<font>'
 					+i
 					+'</font>'
@@ -62,7 +57,7 @@ $(function() {
 				}
 			}
 				if ((startPage + groupSize) <= totPage) {
-					pagination += '<a href="'+context+'/admin/member_list/'+(startPage+groupSize)+'">'
+					pagination += '<a href="'+context+'/admin/memberList/'+(startPage+groupSize)+'">'
 					+'<IMG SRC="'+img+'/btn_nxt_page.gif">&nbsp;</a>';
 				}
 				pagination += '</TD>';		
@@ -84,7 +79,13 @@ $(function() {
 			table += pagination;
 			$('.mainView').html(table);
 		});
-	}
+	},
+	memberNotExist : function() {
+		var table ='<h1>회원목록</h1><table id="tab_member"><tr><th>아이디</th>';
+		table += '<th>이름</th><th>성별</th><th>생년원일</th><th>전화번호</th><th>이메일</th></tr>';
+		table += '<tr><td colspan="6"><h2>회원목록이 없습니다.</h2></td></tr></table>';
+		$(table).appendTo($('#main_right').empty());
+}
  };
  
 </script>
