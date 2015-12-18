@@ -10,7 +10,7 @@ public interface ArticleMapper {
 	public int wright(ArticleVO article);
 
 	// R : 조회
-	public List<ArticleVO> getList(Command command); // 전체회원목록
+	public List<ArticleVO> getList(Command command); // 게시판별 글 목록
 	public List<ArticleVO> searchByKeyword(Command command); // 임의의 값으로 검색
 	public ArticleVO searchById(int rcdNo); // 번호로 조회
 	public int count(); // 전체회원수 조회
