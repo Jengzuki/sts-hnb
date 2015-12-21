@@ -54,7 +54,7 @@ public class ArticleController {
 	public String save(
 			@RequestBody ArticleVO article){
 		logger.info("ArticleController-save()");
-		return "article/save.jsp";
+		return "article/write.jsp";
 	}
 	
 }
