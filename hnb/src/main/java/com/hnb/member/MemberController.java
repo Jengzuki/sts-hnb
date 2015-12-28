@@ -126,6 +126,29 @@ public class MemberController {
 		return member;
 	}
 	
+	@RequestMapping(value="/login")
+	public Model loginForModile(Model model,
+			@RequestParam("id")String id,
+			@RequestParam("password")String password
+			){
+		logger.info("MemberController-loginForModile()");
+		logger.info("login() : 로그인 진입");
+		logger.info("login() : 유저 아이디 : {}",id);
+		logger.info("login() : 유저 비번 : {}",password);
+		member = service.login(id, password);
+		model.addAttribute("user", member);
+		String u = member.getId();
+		if (member.getId().equals(id)) {
+			logger.info("로그인 성공:: ", u);
+			model.addAttribute("result","success");
+		} else {
+				logger.info("로그인 실패 ");
+				model.addAttribute("result","fail");
+			}
+		return model;
+	}
+	
+	
 	@RequestMapping("/check_Overlap")
 	public Model checkOverlap(String id, Model model){
 		logger.info("MemberController-checkOverlap()");
