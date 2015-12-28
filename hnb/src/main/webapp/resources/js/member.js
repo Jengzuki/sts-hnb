@@ -7,7 +7,7 @@ var Member = {
 					"id" : $('#id').val(),
 					"password" : $('#password').val()
 			};
-			
+			alret('로그인버튼 클릭'+member);
 			$.ajax(project + "/member/login",{
 				data : JSON.stringify(member),
 				dataType : "json",
