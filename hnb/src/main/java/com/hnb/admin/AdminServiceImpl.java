@@ -12,7 +12,6 @@ import com.hnb.member.MemberServiceImpl;
 @Service
 public class AdminServiceImpl implements AdminService{
 	MemberService memberService;
-	AdminDAO dao;
 	@Override
 	public List getMemberList() {
 		List list = new ArrayList();
