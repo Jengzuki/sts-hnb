@@ -1,6 +1,6 @@
 package com.hnb.ticket;
 
-import java.sql.Date;
+
 
 import org.springframework.stereotype.Component;
 @Component

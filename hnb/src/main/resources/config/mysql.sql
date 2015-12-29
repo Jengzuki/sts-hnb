@@ -2,6 +2,9 @@
 -- grant dba to movie;
 -- conn movie/movie
 -- CREATE sequence seq; 
+ALTER TABLE MEMBER ADD PROFILE VARCHAR(50);
+
+
 CREATE TABLE THEATER(
 	THEATER_SEQ INT PRIMARY KEY AUTO_INCREMENT, 
 	THEATER_NAME VARCHAR(50)
@@ -18,6 +21,7 @@ CREATE TABLE MEMBER(
 	EMAIL VARCHAR(50),
 	MY_THEATER INT,
 	REGDATE DATE,
+	PROFILE VARCHAR(50),
 	CONSTRAINT MEMBER_FK FOREIGN KEY(MY_THEATER)
 		REFERENCES THEATER(THEATER_SEQ),
 	CONSTRAINT MEMBER_PK PRIMARY KEY(ID)
@@ -123,21 +127,21 @@ INSERT INTO THEATER(THEATER_NAME) VALUES('대전'); --13
 INSERT INTO THEATER(THEATER_NAME) VALUES('해운대'); --14 
 INSERT INTO THEATER(THEATER_NAME) VALUES('제주'); --15 
 
-INSERT INTO MEMBER VALUES('choa','1','초아','90','여','010-1111-1111','서울특별시 강남구','choa@naver.com',null,now());
-INSERT INTO MEMBER VALUES('hong','1','홍길동','44','남','010-2222-2222','서울특별시 동작구','hong@naver.com',null,now());
-INSERT INTO MEMBER VALUES('yeon','1','태연','90','여','010-3333-3333','서울특별시 마포구','yeon@naver.com',null,now());
-INSERT INTO MEMBER VALUES('bang','1','이방원','37','남','010-4444-4444','수원시 권선구','bang@naver.com',null,now());
-INSERT INTO MEMBER VALUES('kim','1','김유신','55','남','010-5555-5555','서울특별시 구로구','kim@naver.com',null,now());
-INSERT INTO MEMBER VALUES('jiwoo','1','지우','88','남','010-6666-6666','수원시 팔달구','jiwoo@naver.com',null,now());
-INSERT INTO MEMBER VALUES('lux','1','럭스','78','여','010-7777-7777','수원시 호매실동','lux@naver.com',null,now());
-INSERT INTO MEMBER VALUES('talon','1','탈론','94','남','010-8888-8888','부산시 해운대','talon@naver.com',null,now());
-INSERT INTO MEMBER VALUES('zed','1','제드','90','남','010-9999-9999','부천시 원미구','zed@daum.net',null,now());
-INSERT INTO MEMBER VALUES('shen','1','쉔','86','남','010-1010-1010','서울특별시 강서구','shen@daum.net',null,now());
-INSERT INTO MEMBER VALUES('jonadan','1','조나단','80','남','010-1101-1101','서울특별시 강남구','jonadan@daum.net',null,now());
-INSERT INTO MEMBER VALUES('jane','1','제인','90','여','010-1212-1212','서울특별시 강남구','jane@nate.com',null,now());
-INSERT INTO MEMBER VALUES('iu','1','아이유','90','여','010-1313-1313','인천시 연수구','iu@nate.com',null,now());
-INSERT INTO MEMBER VALUES('rise','1','라이즈','98','남','010-1414-1414','인천시 남동구','rise@lycos.com',null,now());
-INSERT INTO MEMBER VALUES('fortune','1','미스포츈','93','여','010-1515-1515','인천시 남동구','fortune@lycos.com',null,now());
+INSERT INTO MEMBER VALUES('choa','1','초아','90','여','010-1111-1111','서울특별시 강남구','choa@naver.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('hong','1','홍길동','44','남','010-2222-2222','서울특별시 동작구','hong@naver.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('yeon','1','태연','90','여','010-3333-3333','서울특별시 마포구','yeon@naver.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('bang','1','이방원','37','남','010-4444-4444','수원시 권선구','bang@naver.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('kim','1','김유신','55','남','010-5555-5555','서울특별시 구로구','kim@naver.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('jiwoo','1','지우','88','남','010-6666-6666','수원시 팔달구','jiwoo@naver.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('lux','1','럭스','78','여','010-7777-7777','수원시 호매실동','lux@naver.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('talon','1','탈론','94','남','010-8888-8888','부산시 해운대','talon@naver.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('zed','1','제드','90','남','010-9999-9999','부천시 원미구','zed@daum.net',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('shen','1','쉔','86','남','010-1010-1010','서울특별시 강서구','shen@daum.net',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('jonadan','1','조나단','80','남','010-1101-1101','서울특별시 강남구','jonadan@daum.net',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('jane','1','제인','90','여','010-1212-1212','서울특별시 강남구','jane@nate.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('iu','1','아이유','90','여','010-1313-1313','인천시 연수구','iu@nate.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('rise','1','라이즈','98','남','010-1414-1414','인천시 남동구','rise@lycos.com',null,now(),'default.png');
+INSERT INTO MEMBER VALUES('fortune','1','미스포츈','93','여','010-1515-1515','인천시 남동구','fortune@lycos.com',null,now(),'default.png');
 
 INSERT INTO MOVIE VALUES('A001','내부자들','우민호','이병헌, 조승우, 백윤식','청소년 관람불가',130,10000,'한국','범죄, 드라마','2015/11/18','2015/12/18',null,null,null);
 INSERT INTO MOVIE VALUES('A002','이터널 선샤인','미셸 공드리','짐 캐리, 케이트 윈슬렛, 커스틴 던스트, 마크 러팔로, 일라이저 우드','15세 이상',107,10000,'미국','로맨스, 멜로','2015/11/05','2015/12/05',null,null,null);
